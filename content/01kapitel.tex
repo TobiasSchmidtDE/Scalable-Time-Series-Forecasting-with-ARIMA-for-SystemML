@@ -1,0 +1,40 @@
+%!TEX root = ../dokumentation.tex
+
+\chapter{Introduction}
+
+% Why Machine Learning
+
+Good decision making is the backbone to success and understanding data and deriving insights from it, is what has enabled people to do so and what will enable them to keep doing it.
+Especially in businesses, improving decision making has always been of high importance.
+However, for making good decisions evaluating all the possible alternatives is essential. And the more accurate the analysis of the situation and possible outcomes the better the decision that can be concluded from this. 
+Creating good analysis is highly dependent on building and using models that represent the reality as closely as possible. For a long time, statisticians and other industry experts were needed to come up with those models and they still are. However, with the invention of more powerful computers, not only the computing power increased but the amount of new data generated did as well: 
+\begin{center}
+	\textit{"There were 5 exabytes of information created between the dawn of civilization through 2003, but that much information is now created every 2 days"}\begin{flushright}
+		- Eric Schmidt at the Techonomy conference 2010
+	\end{flushright} 
+\end{center} 
+For this massive increase of data - in complexity as well as quantity - relying only on people to come up with new and more accurate models has proven to be insufficient.
+But especially in the current age of "Big Data" understanding this vast amount of data has become even more important than before. To do this with the limited number of experts available the way data was analyzed had to change. So instead of letting people build precise models themselves, more general and dynamic models were used and combined with algorithms that could find a more precise form of the general model. This process is also called training or fitting and the overall approach is generally referred to as Machine Learning (\acs{ML}). 
+
+To find a suitable model for a specific problem or dataset, the type of data that has to be analyzed is of high importance. And one of the most common sources of data - used broadly across businesses - are sensors. And sensors are everywhere nowadays: Vehicles, Buildings, Smart Phones, Coffee Machines, even a significant number of people are wearing sensors in form of smart watches and other wearable devices all the time. And most of these sensors have one thing in common: The data they gather is time stamped and referred to as time series data. The goal of time series analysis is either to understand and interpret the underlying forces that produce the observed system in relation to time or to forecast a future state of the system.
+
+For this, several models have been developed. The \acs{ARIMA} (Autoregressive Integrated Moving Average) model is one of them and wildly spread, because of its ability to take into account a reasonable amount of the complexity that time series datasets embody. However, this doesn't address the complications originating from the sheer amount of data that is supposed to be used to fit the model.
+
+This is a common problem that already has been addressed in multiple ways and which solution is actually twofold: On the one hand distributed computing is needed to use the full capacity of a cluster of mainframes to divide a computing task on the individual machines, on the other hand there is also the need for distributed file system, because all of the machines need to be able to access the same data that the computations might depend on. There are multiple frameworks out there that provide these capabilities. One of these is Apache Hadoop which offers a distributed file system and another one is Apache Spark which can be used for distributed computing.
+
+However implementing those training algorithms needed for Machine Learning to work on scale required the data scientist to also know how to use Hadoop and Spark, which is usually not the case. To overcome the need of a second engineer that is specialized on cluster computing frameworks like Spark or Hadoop Apache SystemML has been developed. By providing a R-Like programming language, called Declarative Machine Learning Language (\acs{DML}), SystemML is able to scale any algorithm based on data and cluster characteristics. This makes the need for a separate Hadoop or Spark engineer obsolete and enables the data scientist to use a familiar programming language while still having an algorithm that works for big data.
+
+Furthermore the offering of SystemML is supposed to be extended to simplify time series analysis for data scientists even more. For this the algorithms needed to train an \acs{ARIMA} model, as well as forecast using that model, are supposed to be implemented in DML
+ 
+% Why ARIMA
+
+% Why Apache SystemML
+
+% Example of SMAP?
+
+% Goal
+
+
+
+
+
