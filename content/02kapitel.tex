@@ -62,7 +62,7 @@ And there can be different models used in which there is no trend nor seasonal c
 However there is also another model that does show dependencies. And it is know as \textit{Random Walk Model}. The random walk \(S_t \) obtained by cumulatively summing \acs{iid} random variables \([Z_t]\) with \(S_0=0\) and can therefore be defined as:
 
 \begin{equation}\label{eq:random_walk_model}
-	S_t = Z_1 + Z_2 + Z_3 + ... + Z_t
+S_t = Z_1 + Z_2 + Z_3 + ... + Z_t
 \end{equation}
 
 If furthermore the random variables \([Z_t] \) are Bernoulli distributed with \(p=0.5\) then this is called a simple symmetric random walk. An example for this could be a pedestrian who starts a position zero at time zero and at each integer time tosses a fair coin, stepping one unit to the right each time a head appears and one unit to the left for each tail. Both these model are referenced to as \textit{zero-mean models}.
@@ -78,7 +78,7 @@ In several time series there is also a clear trend to be observed in the data. T
 Trend models aim to capture this long run trend in a time series. They can be fitted as linear regressions of the time index. And for this a trend model \(X_t\) can be expresses as the sum of the trend component \(m_t\) being a slowly changing function and a zero mean model \(z_t\):
 
 \begin{equation}\label{eq:simple_trend_model}
-	X_t = m_t + z_t
+X_t = m_t + z_t
 \end{equation}
 
 \begin{figure}[ht]
@@ -97,13 +97,13 @@ In contrast to that, seasonal cycles have a known \textbf{constant} periodicity.
 In order to represent such seasonal effects, allowing for noise but assuming no trend, we can use a model that can be expressed as combination of an harmonic regression and the zero mean model 
 
 \begin{equation}\label{eq:simple_seasonal_model}
-	X_t = s_t + z_t
+X_t = s_t + z_t
 \end{equation}
 where \(s_t\) is a periodic function of t with period d (\(s_{t-d}= s_t\)) and is defined as: 
 
 
 \begin{equation}\label{eq:harmonic_regression}
-	s_t = a_0 + \displaystyle\sum_{j=1}^{k} (a_j \cos(\lambda t) + b_j \sin(\lambda t ))
+s_t = a_0 + \displaystyle\sum_{j=1}^{k} (a_j \cos(\lambda t) + b_j \sin(\lambda t ))
 \end{equation}
 
 here \(a_0, a_1, . . . , a_k\) and \(b_1, . . . , b_k\) are unknown parameters and \(\lambda_1, . . . , \lambda_k\) are fixed frequencies, each being some integer multiple of \(2\pi/d\).
@@ -145,19 +145,19 @@ A time series is called stationary if its statistical properties stay constant o
 Let \({X_t}\) be a time series with \(E(X_t^2 ) < \infty\). The mean function of \({X_t }\) is
 
 \begin{equation}\label{eq:mean_function}
-	\mu_X(t) = E(X_t )
+\mu_X(t) = E(X_t )
 \end{equation}
 The covariance function of \({X_t }\) is
 
 \begin{equation}\label{eq:covariance_function}
-	\gamma_X(r, s)  = Cov(X_r,X_s)  E[(X_r - \mu_X(r))(X_s - \mu_X(s))]
+\gamma_X(r, s)  = Cov(X_r,X_s)  E[(X_r - \mu_X(r))(X_s - \mu_X(s))]
 \end{equation}
 for all integers r and s.
 \({X_t }\) is (weakly) stationary if
 \begin{enumerate}
-\item [i] \(\mu_X(t)\) is independent of t,
-\item [and]
-\item [ii] \(\gamma_X(t + h, t) \) is independent of t for each h.
+	\item [i] \(\mu_X(t)\) is independent of t,
+	\item [and]
+	\item [ii] \(\gamma_X(t + h, t) \) is independent of t for each h.
 \end{enumerate}
 
 %https://people.duke.edu/~rnau/411diff.htm
@@ -172,27 +172,27 @@ However, not all time series can be stationarized by these processes. For some s
 
 For the process of nonseasonal \textit{first order differencing} the \textit{lag-1} operator \(\Delta\) is defined by:
 
-\begin{equation}\label{eq:seasonal_first_difference}
-	\Delta X_t = X_t - X_{t-1} = (1-B)X_t
+\begin{equation}\label{eq:first_difference}
+\Delta X_t = X_t - X_{t-1} = (1-B)X_t
 \end{equation}
 
 where B is the backward shift or \textit{backshift} operator
 
 \begin{equation}\label{eq:bachshift_operator}
-	B X_t = X_{t-1}
+B X_t = X_{t-1}
 \end{equation}
 
 Powers of operators \(B\) and \(\Delta\) are defined by \(B^j X_t = X_{t-j}\) and \(\Delta^j X_t = \Delta (\Delta^{j-1} X_t), j >= 1\) with \(\Delta^0 X_t = X_t\). Polynomials in \(B\) and \(\Delta\) are manipulated in precisely the same way as polynomial functions of real variables. For example:
 
 \begin{equation}\label{eq:example_delta_squared}
-	\Delta^2 X_t = \Delta (\Delta X_t) = (1-B)(1-B)X_t = (1-2B + B^2) X_t = X_t - 2 X_{t-1} +  X_{t-2}
+\Delta^2 X_t = \Delta (\Delta X_t) = (1-B)(1-B)X_t = (1-2B + B^2) X_t = X_t - 2 X_{t-1} +  X_{t-2}
 \end{equation}
 
 \begin{figure}[ht]
 	\centering
 	\scalebox{1}{\includegraphics[width=0.66\textwidth]{images/example_firstorderdiff.png}}
 	\caption{Example of a time series with its first order non-seasonal difference}
-  \label{fig:example_non_seasonal_diff}
+	\label{fig:example_non_seasonal_diff}
 \end{figure}
 
 \textit{First order differencing} is an example for a period to period differencing and is used to removed the trend from a time series. However, as seen in \ref{fig:example_non_seasonal_diff} the seasonality is still exhibited in the same way and to remove this as well seasonal differencing as to be applied additionally.
@@ -200,20 +200,20 @@ Powers of operators \(B\) and \(\Delta\) are defined by \(B^j X_t = X_{t-j}\) an
 For the process of seasonal \textit{first order differencing} the \textit{lag-1} operator \(\Delta_s\) with seasonality \(s\) is defined by:
 
 \begin{equation}\label{eq:seasonal_first_difference}
-	\Delta_s X_t = X_t - X_{t-s} = (1-B^s)X_t
+\Delta_s X_t = X_t - X_{t-s} = (1-B^s)X_t
 \end{equation}
 
 And the \textit{D-th order difference} is defined by:
 
-\begin{equation}\label{eq:seasonal_first_difference}
-	\Delta_s^D X_t = (X_t - X_{t-s})^D = (1-B^s)^DX_t
+\begin{equation}\label{eq:seasonal_difference}
+\Delta_s^D X_t = (X_t - X_{t-s})^D = (1-B^s)^DX_t
 \end{equation}
 
 \begin{figure}[ht]
 	\centering
 	\scalebox{1}{\includegraphics[width=0.66\textwidth]{images/example_seasonaldiff.png}}
 	\caption{Example of a time series with its first order non-seasonal difference}
-  \label{fig:example_seasonal_diff}
+	\label{fig:example_seasonal_diff}
 \end{figure}
 
 %Characteristics of Time Series Data and how to model them
@@ -226,123 +226,455 @@ And the \textit{D-th order difference} is defined by:
 
 
 \section{ARIMA Model}
-The \acs{ARIMA} (\acs{ARIMA}) model is used to better understand and forecast time series data. It is based on the \acs{ARMA} model but can also handle data that shows evidence of non-stationarity.  
+The \acl{ARIMA} (\acs{ARIMA}) model is used to better understand and forecast time series data. It is based on the \acl{ARMA} (\acs{ARMA}) model but can also handle data that shows evidence of non-stationarity.  
 \acs{ARMA} is composed out of the \acl{AR} (\acs{AR}) model and the \acl{MA} (\acs{MA}) model.
 
 \acl{AR} models are used to predict future values of a time series by using linear combinations of previous values of the series and \acl{MA} models try to forecast by combining the prediction error that has been made for previous predictions in the time series.
 
 Given a univariate time series \(X_t\) that is stationary and \(e_t\) a random variable with an independent and identical distribution representing the error that can occur in any prediction, the \acs{AR}\((p)\) model is defined by:
 \begin{equation}\label{eq:AR_p}
-	X_t = e_t + \displaystyle\sum_{i=1}^{p} (\phi_i B^i) X_t = e_t + \phi_1 X_{t-1}+ \phi_2 X_{t-2}+ ... + \phi_p X_{t-p}
+X_t = e_t + \displaystyle\sum_{i=1}^{p} (\phi_i B^i) X_t = e_t + \phi_1 X_{t-1}+ \phi_2 X_{t-2}+ ... + \phi_p X_{t-p}
 \end{equation}
 
 By defining the error of a prediction as the difference between the correct value from the time series and the value from the approximation \(\hat{X_t}\) as: 
 
 \begin{equation}\label{eq:error_term}
-	e_t = X_t - \hat{X_t}
+e_t = X_t - \hat{X_t}
 \end{equation}
 
 The approximation of \(X_t\) using an \acs{AR}\((4)\) can be written as:
 
 \begin{equation}\label{eq:AR_four}
-  \hat{X_t} = \phi_1 X_{t-1}+ \phi_2 X_{t-2}+ \phi_3 X_{t-3}+ \phi_4 X_{t-4}
+\hat{X_t} = \phi_1 X_{t-1}+ \phi_2 X_{t-2}+ \phi_3 X_{t-3}+ \phi_4 X_{t-4}
 \end{equation}
 
 The \acl{MA} model is based on the definition \eqref{eq:error_term} of the error term \(e_t\). In contrast to the \acs{AR} model it combines \(e_t\) terms instead of just combining\(X_t\). Hence the definition of \acs{MA}\((q)\) is:
 
 \begin{equation}\label{eq:MA_q}
-	X_t = e_t + \displaystyle\sum_{k=1}^{q} (\theta_k B^k) e_t = e_t + \theta_1 e_{t-1}+ \theta_2 e_{t-2}+ ... + \theta_p e_{t-q}
+X_t = e_t + \displaystyle\sum_{k=1}^{q} (\theta_k B^k) e_t = e_t + \theta_1 e_{t-1}+ \theta_2 e_{t-2}+ ... + \theta_p e_{t-q}
 \end{equation}
 
 This makes the calculation of an \acs{MA}\((q)\) model a little bit more complicated, as demonstrated on the example of \acs{MA}\((3)\):
 
 \begin{equation}\label{eq:example_MA_three_1}
-	X_t = e_t + \theta_1 e_{t-1}+ \theta_2 e_{t-2} + \theta_3 e_{t-3}
+X_t = e_t + \theta_1 e_{t-1}+ \theta_2 e_{t-2} + \theta_3 e_{t-3}
 \end{equation}
 
 Replacing \(e_t\) with its definition \eqref{eq:error_term} and transforming the equation to \(\hat{X_t}\) makes the complication clearer:
 
 \begin{equation}\label{eq:example_MA_three_2}
-	\hat{X_t} =\theta_1 (X_{t-1} - {\hat{X}}_{t-1}) + \theta_2 (X_{t-2} - {\hat{X}}_{t-2}) + \theta_3 (X_{t-3} - {\hat{X}}_{t-3})
+\hat{X_t} =\theta_1 (X_{t-1} - {\hat{X}}_{t-1}) + \theta_2 (X_{t-2} - {\hat{X}}_{t-2}) + \theta_3 (X_{t-3} - {\hat{X}}_{t-3})
 \end{equation}
 
 In this form it is clear that \(\hat{X_t}\) is depended on \({\hat{X}}_{t-1}\), \({\hat{X}}_{t-2}\), \({\hat{X}}_{t-3}\) which are also unknown variables that have to be calculated first. Using the same formula for \({\hat{X}}_{t-1}\) and so on, this leads to more dependencies which lead to even more. What one eventually ends up with is a system of linear equation that, assuming \(X_t\) is a series of length 5 looks like this: 
 
 \begin{equation}\label{eq:example_MA_three_system_1}
-  \begin{array}{lcl}
-    {\hat{X}}_{5} & = & \theta_1 (X_{4} - {\hat{X}}_{4}) + \theta_2 (X_{3} - {\hat{X}}_{3}) + \theta_3 (X_{2} - {\hat{X}}_{2}) \\
-    {\hat{X}}_{4} & = & \theta_1 (X_{3} - {\hat{X}}_{3}) + \theta_2 (X_{2} - {\hat{X}}_{2}) + \theta_3 (X_{1} - {\hat{X}}_{1}) \\
-  {\hat{X}}_{3} & = & \theta_1 (X_{2} - {\hat{X}}_{2}) + \theta_2 (X_{1} - {\hat{X}}_{1})\\
-  {\hat{X}}_{2} & = & \theta_1 (X_{1} - {\hat{X}}_{1})\\
-  {\hat{X}}_{1} & = & 0
-  \end{array}
+\begin{array}{lcl}
+{\hat{X}}_{5} & = & \theta_1 (X_{4} - {\hat{X}}_{4}) + \theta_2 (X_{3} - {\hat{X}}_{3}) + \theta_3 (X_{2} - {\hat{X}}_{2}) \\
+{\hat{X}}_{4} & = & \theta_1 (X_{3} - {\hat{X}}_{3}) + \theta_2 (X_{2} - {\hat{X}}_{2}) + \theta_3 (X_{1} - {\hat{X}}_{1}) \\
+{\hat{X}}_{3} & = & \theta_1 (X_{2} - {\hat{X}}_{2}) + \theta_2 (X_{1} - {\hat{X}}_{1})\\
+{\hat{X}}_{2} & = & \theta_1 (X_{1} - {\hat{X}}_{1})\\
+{\hat{X}}_{1} & = & 0
+\end{array}
 \end{equation}
 
 To be able to calculate this for larger time series, some kind of solving mechanism is needed. To be able to use one of those the system of linear equations needs to be in the form of:
 
 \begin{equation}\label{eq:syslinequation}
-	 \mathbf{A}  \vec{\hat{x}} = \vec{b}
+\mathbf{A}  \vec{\hat{x}} = \vec{b}
 \end{equation}
 
-with $\mathbf{A} \in \mathbb{R}^{n\times n}$ being a $n\times n$ Matrix,  $\vec{\hat{x}} \in \mathbb{R}^n$ and  $\vec{b}\in \mathbb{R}^n$ both vectors. The vector of $\vec{b}$ representing the known values for each equation, $\vec{\hat{x}}$ the unknown variables and $\mathbf{A}$ the coefficients of all the $\vec{\hat{x}}$ for each equation.
+with $\mathbf{A} \in \mathbb{R}^{n\times n}$ being a $n\times n$ Matrix,  $\vec{\hat{x}} \in \mathbb{R}^n$ and  $\vec{b}\in \mathbb{R}^n$ both n-dimensional vectors. The vector of $\vec{b}$ representing the known values for each equation, $\vec{\hat{x}}$ the unknown variables and $\mathbf{A}$ the coefficients of all the $\vec{\hat{x}}$ for each equation.
 
 To see how $\mathbf{A}$ and  $\vec{b}$ have to be constructed the system of linear equations \eqref{eq:example_MA_three_system_1} can be transformed to:
 \begin{equation}\label{eq:example_MA_three_system_2}
-  \begin{array}{rcrcrcrcrclll}
-  	{\hat{X}}_{1}&&&&&&&&& = &0&&\\
-  	\theta_1 {\hat{X}}_{1} &+& {\hat{X}}_{2} & & & & & & &= &\theta_1 X_{1}&&\\
- 	\theta_2 {\hat{X}}_{1}&+&\theta_1 {\hat{X}}_{2} &+& {\hat{X}}_{3}&  &  &&& = &\theta_1 X_{2} &+ \theta_2 X_{1}&\\
-    \theta_3 {\hat{X}}_{1} &+& \theta_2 {\hat{X}}_{2} &+&  \theta_1 {\hat{X}}_{3}&+& {\hat{X}}_{4}& && = &\theta_1 X_{3} &+ \theta_2 X_{2} &+ \theta_3 X_{1}\\ 	
-  &&\theta_3 {\hat{X}}_{2} &+& \theta_2 {\hat{X}}_{3}&+& \theta_1 {\hat{X}}_{4} &+&{\hat{X}}_{5}& = &  \theta_1 X_{4} &+\theta_2 X_{3} &+ \theta_3 X_{2}
-  \end{array}
+\begin{array}{rcrcrcrcrclll}
+{\hat{X}}_{1}&&&&&&&&& = &0&&\\
+\theta_1 {\hat{X}}_{1} &+& {\hat{X}}_{2} & & & & & & &= &\theta_1 X_{1}&&\\
+\theta_2 {\hat{X}}_{1}&+&\theta_1 {\hat{X}}_{2} &+& {\hat{X}}_{3}&  &  &&& = &\theta_1 X_{2} &+ \theta_2 X_{1}&\\
+\theta_3 {\hat{X}}_{1} &+& \theta_2 {\hat{X}}_{2} &+&  \theta_1 {\hat{X}}_{3}&+& {\hat{X}}_{4}& && = &\theta_1 X_{3} &+ \theta_2 X_{2} &+ \theta_3 X_{1}\\ 	
+&&\theta_3 {\hat{X}}_{2} &+& \theta_2 {\hat{X}}_{3}&+& \theta_1 {\hat{X}}_{4} &+&{\hat{X}}_{5}& = &  \theta_1 X_{4} &+\theta_2 X_{3} &+ \theta_3 X_{2}
+\end{array}
 \end{equation}
 
 This leads directly to the form required in \eqref{eq:syslinequation}:
 
 \begin{equation}\label{eq:example_MA_three_system_3}
-  \left(\begin{array}[c]{lllll}
-    1 & 0 & 0 & 0 & 0\\
-    \theta_1 & 1 & 0 & 0 & 0\\
-    \theta_2 & \theta_1& 1 & 0 & 0\\
-    \theta_3 & \theta_2 & \theta_1& 1 & 0\\
-    0 & \theta_3 & \theta_2 & \theta_1& 1
-  \end{array}\right) \;\vec{\hat{x}} =
-  \left(\begin{array}[c]{rrr}
-    0 &&\\ 
-    \theta_1 X_{1} &&\\
-      \theta_1 X_{2} &+ \theta_2 X_{1} &\\
-      \theta_1 X_{3} &+ \theta_2 X_{2} &+ \theta_3 X_{1} \\
-      \theta_1 X_{4} &+ \theta_2 X_{3} &+ \theta_3 X_{2} 
-  \end{array}\right)
+\left(\begin{array}[c]{lllll}
+1 & 0 & 0 & 0 & 0\\
+\theta_1 & 1 & 0 & 0 & 0\\
+\theta_2 & \theta_1& 1 & 0 & 0\\
+\theta_3 & \theta_2 & \theta_1& 1 & 0\\
+0 & \theta_3 & \theta_2 & \theta_1& 1
+\end{array}\right) \;\vec{\hat{x}} =
+\left(\begin{array}[c]{rrr}
+0 &&\\ 
+\theta_1 X_{1} &&\\
+\theta_1 X_{2} &+ \theta_2 X_{1} &\\
+\theta_1 X_{3} &+ \theta_2 X_{2} &+ \theta_3 X_{1} \\
+\theta_1 X_{4} &+ \theta_2 X_{3} &+ \theta_3 X_{2} 
+\end{array}\right)
 \end{equation}
 
-Having the system of linear equations in this form, the \acs{MA}$(4)$ model with given $\theta_k$ for $k \in [1,...,4]$ can be calculated using a numerical solver for systems of linear equations like the Jacobi (chapter \ref{jacobi}) or Conjugate Gradient (chapter \ref{cg}) solver.
+Having the system of linear equations in this form, the \acs{MA}$(4)$ model with given $\theta_k$ for $k \in [1,...,4]$ can be calculated using a numerical solver for systems of linear equations like the Jacobi (chapter \ref{jacobi}) or Conjugate Gradient solver.
 
-The \acs{ARMA} model can now be composed out of the \acl{AR} and \acl{MA} model defined previously by the equations \eqref{eq:AR_p} and \eqref{eq:MA_q} and can be represented as:
+The \acs{ARMA}$(p,q)$ model can now be composed out of the \acl{AR}$(p)$ and \acl{MA}$(q)$ model defined previously by the equations \eqref{eq:AR_p} and \eqref{eq:MA_q} and can be represented as:
 
 \begin{equation}\label{eq:ARMA_1}
 \begin{array}{ccc}
-  (1-\displaystyle\sum_{i=1}^{p} \phi_i B^i) X_t & = & (1+\displaystyle\sum_{k=1}^{q} \theta_k B^k)e_t\\
-  \leftrightarrow X_t - \phi_1 X_{t-1} - \phi_2 X_{t-2} - ... - \phi_p X_{t-p} & = & e_t + \theta_1 e_{t-1}+ \theta_2 e_{t-2}+ ... + \theta_p e_{t-q}
-  \end{array}
+(1-\displaystyle\sum_{i=1}^{p} \phi_i B^i) X_t & = & (1+\displaystyle\sum_{k=1}^{q} \theta_k B^k)e_t\\
+\Leftrightarrow X_t - \phi_1 X_{t-1} - \phi_2 X_{t-2} - ... - \phi_p X_{t-p} & = & e_t + \theta_1 e_{t-1}+ \theta_2 e_{t-2}+ ... + \theta_p e_{t-q}
+\end{array}
 \end{equation}
 
 The approximation $\hat{X_t}$ can therefore be calculated by:
 \begin{equation}\label{eq:ARMA_2}
-	\rightarrow  \hat{X}_t = \phi_1 X_{t-1} + \phi_2 X_{t-2} + ... + \phi_p X_{t-p} + \theta_1 e_{t-1}+ \theta_2 e_{t-2}+ ... + \theta_p e_{t-q}
+\rightarrow  \hat{X}_t = \phi_1 X_{t-1} + \phi_2 X_{t-2} + ... + \phi_p X_{t-p} + \theta_1 e_{t-1}+ \theta_2 e_{t-2}+ ... + \theta_p e_{t-q}
+\end{equation}
+
+Because this equation \eqref{eq:ARMA_2} is just a combination of the equations \eqref{eq:AR_p} and \eqref{eq:MA_q} it also comes with the same difficulties as previously described and has therefore to be transformed the same way, so it is in the form of equation \eqref{eq:syslinequation}.
+
+This is achieved with the same procedures as described for the example of \acs{MA}$(3)$ eventually leading to an equation in the form of \eqref{eq:example_MA_three_system_3} with all the \acs{AR} terms of the equation contained within $\vec{b}$.
+%Maybe add example for Matrix and more detailed explanation later
+
+However, like already mentioned in the beginning of this chapter: \acs{ARIMA} is a generalization of \acs{ARMA} with the additional ability to also work with non-stationary time series. It accomplishes this by differencing the time series $d$ times. Hence, the \acs{ARIMA}$(p,d,q)$ model also includes the equation for first order differencing \eqref{eq:first_difference} - modified to equal d-th order differencing - and is therefore defined as:
+
+\begin{equation}\label{eq:ARIMA_1}
+\begin{array}{cccccc}
+(1-\displaystyle\sum_{i=1}^{p} \phi_i B^i) & (1-B^d)& X_t & = & (1+\displaystyle\sum_{k=1}^{q} \theta_k B^k) & e_t
+\end{array}
+\end{equation}
+
+But this model won't be able to fit any seasonal behavior, because it is missing the seasonal parts of all three components \acs{AR}, \acs{MA} and d-th order differencing.
+
+The most commonly used \acs{ARIMA} model for forecasting seasonal time series  is the multiplicative \acl{SARIMA} (\acs{SARIMA}) model. This model assumes that there is a significant parameter as a result of multiplication between nonseasonal and seasonal parameters. But there also is an additive (\acs{SARIMA}) model that can be used to forecast.
+
+The additive models for \acl{SAR} \acs{SAR}$(p,P)$ are defined as:
+\begin{equation}\label{eq:additive_SAR_pP}
+\begin{array}{rcl}
+X_t & = & e_t + \displaystyle\sum_{i=1}^{p} \phi_i B^i X_t + \displaystyle\sum_{j=1}^{P} \Phi_j B^{i\cdot s} X_t\\
+X_t & = & e_t + \phi_1 X_{t-1}+ ... + \phi_p X_{t-p} + \Phi_1 X_{t-1 s}+ ... + \Phi_P X_{t-P s}
+\end{array}  
+\end{equation}
+
+And analog to this the additive \acl{SMA} \acs{SMA}$(q,Q)$ model is defined by:
+
+\begin{equation}\label{eq:additive_SMA_q}
+\begin{array}{rcl}
+X_t & = & e_t + \displaystyle\sum_{k=1}^{q} \theta_k B^k e_t + \displaystyle\sum_{l=1}^{Q} \Theta_l B^{l\cdot s} e_t\\
+X_t & = & e_t + \theta_1 e_{t-1}+ ... + \theta_q e_{t-q} + \Theta_1 e_{t-1 s}+ ... + \Theta_Q e_{t-Q s}
+\end{array}   
+\end{equation}
+
+The differencing component is always multiplicative and therefore by also adding the equation \eqref{eq:seasonal_difference} for the seasonal D-th order difference the additive \acs{SARIMA}$(p,d,q)(P,D,Q)_s$ is defined as:
+
+\begin{equation}\label{eq:additive_SARIMA}
+\begin{array}{cccccc}
+(1-(\displaystyle\sum_{i=1}^{p} \phi_i B^i + \displaystyle\sum_{j=1}^{P} \Phi_j B^{i\cdot s})) & (1-B^d)& X_t & = & (1+(\displaystyle\sum_{k=1}^{q} \theta_k B^k + \displaystyle\sum_{l=1}^{Q} \Theta_l B^{l\cdot s})) & e_t
+\end{array}
+\end{equation}
+
+The multiplicative models are a little bit more complicated for both \acs{SAR} as well as \acs{SMA}. With the multiplicative \acl{SAR} \acs{SAR}$(p,P)$ model being the simpler one defined by:
+
+\begin{equation}\label{eq:multiplicative_SAR_pP}
+\begin{array}{rcl}
+e_t & = & (1-\displaystyle\sum_{i=1}^{p} \phi_i B^i) (1-\displaystyle\sum_{j=1}^{P} \Phi_j B^{i\cdot s}) X_t\\
+e_t & = & (1-\phi_1 B-\phi_2 B^2 - ... -\phi_p B^p) (1-\Phi_1 B^s-\Phi_2 B^{2s} - ... -\Phi_p B^{Ps}) X_t\\
+e_t & = & (1-\phi_1 B-\phi_2 B^2 - ... -\phi_p B^p -\Phi_1 B^s-\Phi_2 B^{2s} - ... -\Phi_p B^{Ps} \\
+& & + \phi_1 \Phi_1 B^{1+s} + \phi_2 \Phi_1 B^{2+s} + \phi_2 \Phi_2 B^{2+2s} + ... + \phi_p \Phi_P B^{p+Ps}) X_t\\
+X_t & = & e_t + \displaystyle\sum_{i=1}^{p} \phi_i B^i X_t + \displaystyle\sum_{j=1}^{P} \Phi_j B^{i\cdot s} X_t - \displaystyle\sum_{i=1}^{p}\displaystyle\sum_{j=1}^{P} \phi_i \Phi_j B^{i + js} X_t
+\end{array}  
+\end{equation}
+
+And the multiplicative \acl{SMA} \acs{SMA}$(q,Q)$ model defined as:
+\begin{equation}\label{eq:multiplicative_SMA_qQ}
+\begin{array}{rcl}
+X_t & = & (1+\displaystyle\sum_{k=1}^{q} \theta_i B^k) (1+\displaystyle\sum_{l=1}^{Q} \theta_j B^{k\cdot s}) e_t\\
+X_t & = & (1+\theta_1 B-\theta_2 B^2 + ... +\theta_p B^q +\theta_1 B^s+\theta_2 B^{2s} + ... +\theta_p B^{Qs} \\
+& & + \theta_1 \theta_1 B^{1+s} + \theta_2 \theta_1 B^{2+s} + \theta_2 \theta_2 B^{2+2s} + ... + \theta_p \theta_P B^{q+Qs}) e_t\\
+X_t & = & e_t + \displaystyle\sum_{k=1}^{q} \theta_i B^k e_t + \displaystyle\sum_{l=1}^{Q} \theta_j B^{k\cdot s} e_t + \displaystyle\sum_{k=1}^{q}\displaystyle\sum_{l=1}^{Q} \theta_i \theta_j B^{k + js} e_t
+\end{array}  
+\end{equation}
+
+This directly leads to the definition of multiplicative \acs{SARIMA}$(p,d,q)(P,D,Q)_s$ as:
+
+\begin{equation}\label{eq:multiplicative_SARIMA}
+\begin{array}{rcl}
+(1-\displaystyle\sum_{i=1}^{p} \phi_i B^i)(1-\displaystyle\sum_{j=1}^{P} \Phi_j B^{i\cdot s}) (1-B^d) (1-B^s)^D X_t & = & (1+\displaystyle\sum_{k=1}^{q} \theta_k B^k) (1+\displaystyle\sum_{l=1}^{Q} \theta_j B^{k\cdot s}) e_t
+\end{array}
+\end{equation}
+
+The complication with this model originates from the third sum that is now also combining  all the $\phi$ and $\Phi$ in case of \acs{AR} and all the $\theta$ and $\Theta$ for \acs{MA}.
+
+The terms of the third sum increase exponentially if both parameters are increased, which leads to an equivalent increase in compile-time. Additionally this further complicates the transformation of the system of linear equations for \acl{MA}.
+
+For example, the equation for the approximation ${\hat{X}}_t$ of multiplicative \acs{SARIMA}$(2,0,1)(1,0,2)_{3}$ would look like:
+
+\begin{equation}\label{eq:example_multiplicative_SARIMA_1}
+\begin{array}{rcl}
+\hat{X_t} & = & \phi_1 X_{t-1} + \phi_2 X_{t-2} + \Phi_1 X_{t-2} + \phi_1 \Phi_1 X_{t-3} + \phi_2 \Phi_1 X_{t-4}\\
+&& + \theta_1 (X_{t-1} - {\hat{X}}_{t-1})+ \Theta_1 (X_{t-2} - {\hat{X}}_{t-2}) + \Theta_2 (X_{t-4} - {\hat{X}}_{t-4})\\
+&& + \theta_1 \Theta_1 (X_{t-3} - {\hat{X}}_{t-3}) + \theta_1 \Theta_2 (X_{t-5} - {\hat{X}}_{t-5})
+\end{array}
+\end{equation}
+
+Bringing this in the form required in \eqref{eq:syslinequation} assuming that the time series $X_t$ is only of length $8$:
+
+\begin{frame}
+	\footnotesize
+	\medmuskip = 1mu % default: 4mu plus 2mu minus 4mu
+	\begin{equation}\label{eq:example_multiplicative_SARIMA_2}
+	\resizebox{\linewidth}{!}{%
+		$\displaystyle
+		\left(\begin{array}[c]{lllllll}
+		1 & 0 & 0 & 0 & 0 & 0 \\
+		\theta_1 & 1 & 0 & 0 & 0 & 0 \\
+		\Theta_1 & \theta_1& 1 & 0 & 0 & 0\\
+		\theta_1 \Theta_1 & \Theta_1 & \theta_1& 1 & 0 & 0\\
+		\Theta_2 & \theta_1 \Theta_1 & \Theta_1 & \theta_1 & 1 & 0 \\
+		\theta_1 \Theta_2 & \Theta_2 & \theta_1 \Theta_1 & \Theta_1 & \theta_1 & 1
+		\end{array}\right)
+		\left(\begin{array}[c]{c}
+		\hat{X}_1\\
+		\hat{X}_2\\
+		\hat{X}_3\\
+		\hat{X}_4\\
+		\hat{X}_5\\
+		\hat{X}_6
+		\end{array}\right) =
+		\left(\begin{array}[c]{lrrrr}
+		0\\ 
+		\phi_1\theta_1 X_1\\
+		\phi_1\theta_1 X_2 & + \Phi_1\phi_2\theta_2 X_1\\
+		\phi_1\theta_1 X_3 & + \Phi_1\phi_2\theta_2 X_2 & + \Phi_1\Theta_1 X_1\\
+		\phi_1\theta_1 X_4 & + \Phi_1\phi_2\theta_2 X_3 & + \Phi_1\Theta_1 X_2 + &\Theta_2X_1\\
+		\phi_1\theta_1 X_5 & + \Phi_1\phi_2\theta_2 X_4 & + \Phi_1\Theta_1 X_3 + &\Theta_2X_2 & + \theta_1\Theta_2X_1
+		\end{array}\right)
+		$}
+	\end{equation}
+\end{frame}
+
+For the estimation of the \acs{SARIMA} coefficients $\phi$, $\Phi$, $\theta$ and $\Theta$ an objective function is needed to be optimized over. And there are different estimators that can be used for this purpose: 
+\begin{itemize}
+	\item \acl{ML} (\acs{ML}) estimation
+	\item Yule-Walker estimation
+	\item Least Squares or \acl{CSS} (\acs{CSS}) method
+\end{itemize}
+
+With the Yule-Walker and the \acl{ML} estimator described in detail in Peter J. Brookwell's 2002 "Introduction to Time Series and Forecasting, Second Edition" and also being the more complicated two.
+
+The \acl{CSS} method in contrast to that can, for $X_t$ with size $T$, be simple put as the sum of squared residuals:
+\begin{equation}\label{eq:ARIMA_CSS}
+\begin{array}{rcl}
+ARIMA_{CSS}(\phi_{1..p}, \Phi_{1..P}, \theta_{1..q}, \Theta_{1..Q}) = \frac{1}{2}\displaystyle\sum_{t=1}^{T} (e_t)^2 = \frac{1}{2}\displaystyle\sum_{t=1}^{T} (X_t - \hat{X}_t)^2
+\end{array}
 \end{equation}
 
 
-%X_t = e_t + \displaystyle\sum_{i=1}^{p} (\phi_i B^i) X_t = e_t + 
-    
-%X_t = e_t + \displaystyle\sum_{k=1}^{q} (\theta_k B^k) e_t = 
-
 \section{Optimization Algorithms}\label{optimalgorithms}
+To forecast using \acs{ARIMA} the \acl{AR} and \acl{MA} coefficients have to be estimated first. This is done by solving an optimization problem:
+\begin{equation}\label{eq:min}
+\begin{array}{c}
+\displaystyle\max_{\phi_{1..p}, \Phi_{1..P}, \theta_{1..q}, \Theta_{1..Q} \in R} \; g(\phi_{1..p}, \Phi_{1..P}, \theta_{1..q}, \Theta_{1..Q})\\
+or \\
+\displaystyle\min_{\phi_{1..p}, \Phi_{1..P}, \theta_{1..q}, \Theta_{1..Q} \in R} \; g(\phi_{1..p}, \Phi_{1..P}, \theta_{1..q}, \Theta_{1..Q})
+\end{array}
+\end{equation}
+
+with $g(\phi_{1..p}, \Phi_{1..P}, \theta_{1..q}, \Theta_{1..Q})$ being the \acl{ML}, Yule-Walker or \acl{CSS} estimator. There are different algorithms that have been developed to solve such a optimization problem. Some of the most common ones that are also provided by the general-purpose optimization function $optim()$  of R are called:
+\begin{itemize}
+	\item Nelder-Mead method
+	\item \acl{BFGS} (\acs{BFGS}) method
+	\item \acl{L-BFGS} (\acs{L-BFGS}) method
+	\item Brent method
+\end{itemize}
+
 \subsection{BFGS}\label{bfgs}
-\subsection{Nelder-Mead}\label{neldermead}
-\section{Numerical Solvers of Linear Systems}\label{linsys_solvers}
+The \acl{BFGS} (\acs{BFGS}) algorithm belongs to the class of \textit{Quasi-Newton} methods and can therefore be used to find roots or local maxima and minima of real-valued functions. \textit{Quasi-Newton} methods do this faster then the "full" \textit{Newton} method by approximating the Hessian or Jacobian instead of calculating it exactly.
+
+If the function $f: R \rightarrow R$ its \textit{derivative}, $f'(x)$ and an initial guess $\hat{x}_0$ is given then the \textit{Newton} method's iterative approximation $\hat{x}_{n+1}$ of the root of $f(x)$ is given by: 
+\begin{equation}\label{eq:newtons_method_univariate}
+	\begin{array}{c}
+		\hat{x}_{n+1} = \hat{x}_{n} - f(\hat{x}_{n})/f'(\hat{x}_{n})
+	\end{array}
+\end{equation}
+    
+%Die Gleichung (6.36) lässt sich geometrisch interpretieren: Legen wir im Punkt hxn; g(xn)i eine Tangente an die Funktion g, so schneidet diese Tangente die x-Achse im Punkt
+
+
+%Multivariate Newtons method for maxima using hessian: http://people.duke.edu/~kh269/teaching/b553/newtons_method.pdf
+
+%Explanation multivariate newton raphson (Jacobi) method:http://fourier.eng.hmc.edu/e176/lectures/NM/node21.html
+
+
+%Quasi-Netwon Method with hessian: https://www.rose-hulman.edu/~bryan/lottamath/quasinewton.pdf
+
+%More quasi newton: https://www.cs.ccu.edu.tw/~wtchu/courses/2014s_OPT/Lectures/Chapter%2011%20Quasi-Newton%20Methods.pdf
+
+This of course is only for univariate functions. The definition of the iterative approximation $\hat{x}_{n+1}$ of the root for multivariate function $f(x): R^k -> R$ is:
+
+\begin{equation}\label{eq:newtons_method_multivariate_root}
+	\begin{array}{c}
+		\hat{x}_{n+1} =\hat{x}_{n} - \frac{f(\hat{x}_{n})}{J_f(\hat{x}_{n})} = \hat{x}_{n} - f(\hat{x}_{n}) \cdot J_f^{-1}(\hat{x}_{n}) 
+	\end{array}
+\end{equation}
+
+With $J_f(\hat{x}_{n})$ being the Jacobian matrix, the matrix of all \textit{first-order} partial derivatives.
+
+
+Using the \textit{Newton} method to optimize the function $f$ is equivalent to finding the root of the \textit{derivative}  $f'$ which means that the approximation $\vec{\hat{x}}_{n+1}$ for the extrema of $f$ is given by:
+
+\begin{equation}\label{eq:newtons_method_multivariate_extrema}
+	\begin{array}{c}
+		\hat{x}_{n+1} =\hat{x}_{n} - \frac{\Delta f(\hat{x}_{n})}{H_f(\hat{x}_{n})} = \hat{x}_{n} - \Delta f(\hat{x}_{n}) \cdot H_f^{-1}(\hat{x}_{n}) 
+	\end{array}
+\end{equation}
+
+With $H_f(\hat{x}_{n})$ being the Hessian, a square matrix of all \textit{second-order} partial derivatives.
+
+%http://people.duke.edu/~kh269/teaching/b553/newtons_method.pdf :
+The drawback of using the \textit{Newton} method is that it requires inverting the Hessian, which means a computation of $O(n^3)$ using standard techniques. Additionally the exact calculation of the Hessian takes $O(n^2)$ function evaluations (partial derivatives). Consequently using the Newton method is getting expensive for large n. 
+
+\textit{Quasi-Newton} methods try to overcome these limitations by approximating the Hessian instead of calculating it directly. This can be achieved by leveraging the \textit{secant} method.
+
+The \textit{secant} approximation of the second derivative of the univariate function $f(x)$ is:
+
+\begin{equation}\label{eq:secant_method_univariate}
+	\begin{array}{lc}
+		&f''(x_k) \approx \frac{f'(x_k) - f'(x_{k-1})}{x_k - x_{k-1}}\\
+        \Leftrightarrow &f''(x_k) \cdot (x_k - x_{k-1})\approx f'(x_k) - f'(x_{k-1})
+	\end{array}
+\end{equation}
+
+The generalization of \eqref{eq:secant_method_univariate} for a multivariate function is:
+
+\begin{equation}\label{eq:secant_method_multivariate}
+	\begin{array}{lc}
+		\Delta^2 f(x_k) \cdot (x_k - x_{k-1})\approx \Delta f(x_k) - \Delta f(x_{k-1})
+	\end{array}
+\end{equation}
+
+\textit{Quasi-Newton} methods try to find the Hessian $H_f(x_k)\approx \Delta^2f(x_k)$ to make \eqref{eq:secant_method_multivariate} an equality. For this there is an initial guess needed for $H_0 = I$ which is then incrementally improved by updating $H_{k+1}$.
+
+Using this approach the Hessian $H_f(x_k)$ still needs to be inverted which is also a time consuming computation, that can be avoided by instead approximating the inverse Hessian $H_f^{-1}(x_k)$ directly. 
+
+In that case we define $B_k$ as the inverse Hessian $H_f^{-1}(x_k)$ and the search direction $p_k$ that has to be computed are defined as:
+\begin{equation}\label{eq:searchdirection}
+	\begin{array}{lc}
+		p_k = -B_k \cdot \Delta f(x_k)
+	\end{array}
+\end{equation}
+
+To calculate the updated approximation of $B_k$ an acceptable step size $\alpha$ in the direction $p_k$ has to be found by using a line search:
+\begin{equation}\label{eq:linesearch_objfunction}
+	\begin{array}{lc}
+		\displaystyle \min_\alpha \;\;\; h(\alpha) = f(x_k + \alpha p_k)
+	\end{array}
+\end{equation}
+
+An exact line search algorithm would determine a value for $\alpha$ that exactly minimizes $h(\alpha)$. However this is not always necessary or even desirable because of the additional computing costs it would require. 
+Instead using, for example the backtracking line search, the step size $\alpha$ can be approximately reasonably well, which is sufficient for most cases.
+
+The backtracking line search starts the same way an exact one would by guessing $\alpha_0 > 0$ and then shrinking it in every iteration by multiplying it with a constant $r \in ]0,1[$:
+\begin{equation}\label{eq:linesearch_ak}
+	\begin{array}{lc}
+		\alpha_{k+1} = r \cdot \alpha_k
+	\end{array}
+\end{equation}
+
+This is repeated as long as the Armijo-Goldstein condition is fulfilled, which tests whether the new smaller step size  achieves a adequately corresponding decrease in the objective function $h(\alpha)$ defined in \eqref{eq:linesearch_objfunction}.
+The Armijo-Goldstein condition is fulfilled if:
+\begin{equation}\label{eq:linesearch_armijo-goldstein}
+	\begin{array}{lc}
+		f(x+\alpha p) <= f(x) + a c m
+	\end{array}
+\end{equation}
+
+With $m= p^T \Delta f(x)$ and $c\in]0,1[$ being a pre defined control parameter.
+
+Given $p_k$ and $\alpha_k$ the update formula of \acl{BFGS} algorithm for $B$ is defined by:
+\begin{equation}\label{eq:lbfgs_update_1}
+	\begin{array}{lc}
+		B_{k+1} = B_k + \frac{(s_k^T y_k + y_k^T B_k y_k)(s_k s_k^T)}{(s_k^T y_k)^2} - \frac{B_k (s_k^T y_k + s_k y_k^T)}{s_k^T y_k}
+	\end{array}
+\end{equation}
+
+With $y_k = \Delta f(x_{k+1}) - \Delta f(x_k)$ and $s_k = x_{k+1}-x_k = a_k \cdot p_k$.
+
+The only thing left to be able to optimize using \acs{BFGS} is the gradient $\Delta f(x)$. This can either be done by approximating using finite differencing or by calculating the exact partial differentials of $f(x)$. 
+
+
+To get more accurate results calculating the partial differentials is preferred. In case of minimizing the objective function $ARIMA_{CSS}$ defined in \eqref{eq:ARIMA_CSS} and $\hat{X}_t$
+\begin{equation}\label{eq:ARIMA_CSS_long}
+	\begin{array}{rrlll}
+    	\hat{X}_t &=& \displaystyle\sum_{i=1}^{p} \phi_i B^i X_t &+ \displaystyle\sum_{j=1}^{P} \Phi_j B^{i\cdot s} X_t &- \displaystyle\sum_{i=1}^{p}\displaystyle\sum_{j=1}^{P} \phi_i \Phi_j B^{i + js} X_t \\
+        &+& \displaystyle\sum_{k=1}^{q} \theta_i B^k e_t &+ \displaystyle\sum_{l=1}^{Q} \theta_j B^{k\cdot s} e_t &+ \displaystyle\sum_{k=1}^{q}\displaystyle\sum_{l=1}^{Q} \theta_i \theta_j B^{k + js} e_t
+	\end{array}
+\end{equation}
+
+the partial differentials are as follows:
+\begin{equation}\label{eq:gradient_arima_phi}
+	\begin{array}{lcl}
+		\frac{\delta}{\delta \phi_n} ARIMA_{CSS}(\phi_{1..p}, \Phi_{1..P}, \theta_{1..q}, \Theta_{1..Q}) &=& \frac{1}{2}\displaystyle\sum_{t=1}^{T} 2 \cdot (X_t - \hat{X}_t) \cdot (\frac{\delta}{\delta \phi_n} (X_t - \hat{X}_t))\\
+        &=& \displaystyle\sum_{t=1}^{T} e_t \cdot  (-B^n X_t +  \displaystyle\sum_{j=1}^{P} \Phi_j B^{n + js} X_t)
+	\end{array}
+\end{equation}
+
+\begin{equation}\label{eq:gradient_arima_theta}
+	\begin{array}{lcl}
+		\frac{\delta}{\delta \theta_n} ARIMA_{CSS}(\phi_{1..p}, \Phi_{1..P}, \theta_{1..q}, \Theta_{1..Q}) &=& \displaystyle\sum_{t=1}^{T} e_t \cdot  (-B^n e_t - \displaystyle\sum_{l=1}^{Q} \Theta_j B^{n + ls} e_t)
+	\end{array}
+\end{equation}
+
+\begin{equation}\label{eq:gradient_arima_Phi}
+	\begin{array}{lcl}
+		\frac{\delta}{\delta \Phi_n} ARIMA_{CSS}(\phi_{1..p}, \Phi_{1..P}, \theta_{1..q}, \Theta_{1..Q}) &=& \displaystyle\sum_{t=1}^{T} e_t \cdot  (-B^{n \cdot s} X_t + \displaystyle\sum_{i=1}^{p} \phi_i B^{i + ns} X_t)
+	\end{array}
+\end{equation}
+
+\begin{equation}\label{eq:gradient_arima_Theta}
+	\begin{array}{lcl}
+		\frac{\delta}{\delta \Theta_n} ARIMA_{CSS}(\phi_{1..p}, \Phi_{1..P}, \theta_{1..q}, \Theta_{1..Q}) &=& \displaystyle\sum_{t=1}^{T} e_t \cdot  (-B^{n \cdot s} e_t - \displaystyle\sum_{k=1}^{q} \theta_j B^{k +ns} e_t)
+	\end{array}
+\end{equation}
+
+%\subsection{Nelder-Mead}\label{neldermead}
+
+\section{Solvers of Linear Systems}\label{linsys_solvers}
+
+The hardest part of calculating an approximation $\hat{X}_t$ for the \acs{ARIMA} model is finding a solution for the system of linear equation depicted in the equations \eqref{eq:example_MA_three_system_1} and \eqref{eq:example_multiplicative_SARIMA_2}.
+And again there are different approaches that can be taken. The first differentiation is between exact and numerical methods. One example for an exact one would be the \textit{ Gaussian Elimination} solver. However, the complexity of this algorithm is $O(n^3)$ which means that is not suitable for large systems of equations. And especially for \acs{ARIMA} this is almost always the case, because the system of linear equations will always be equal to the size of the time series used to train the model. So instead an iterative approach is used. The \textit{Jacobi} method is one of these and it is commonly used, because of its simplicity and robustness. Additionally each iteration is quite fast. 
+
 \subsection{Jacobi} \label{jacobi}
-\subsection{Conjugate Gradient}\label{cg}
+Given a system of linear equations given in the form of the equation \eqref{eq:syslinequation} that can also be express as:
+
+\begin{equation}\label{eq:syslineqaution_long}
+	\begin{array}{lcl}
+		\displaystyle\sum_{j=1}^{n} a_{ij} \cdot x_j = b_i
+	\end{array}
+\end{equation}
+
+Using the \textit{fixed-point iteration} method this equation \eqref{eq:syslineqaution_long} can be transformed to be:
+
+\begin{equation}\label{eq:syslineqaution_fixedpoint}
+	\begin{array}{lrcl}
+		&\displaystyle\sum_{j=1}^{n} a_{ij} \cdot x_j &=& b_i\\
+        \Leftrightarrow & a_{ii} \cdot x_i \displaystyle\sum_{\substack{j=1 \\ j\neq i}} a_{ij} \cdot x_j &=& b_i\\
+        \Leftrightarrow & a_{ii} \cdot x_i  &=& b_i \displaystyle\sum_{\substack{j=1 \\ j\neq i}} a_{ij} \cdot x_j\\
+        \Leftrightarrow & x_i  &=& a_{ii} - (b_i \displaystyle\sum_{\substack{j=1 \\ j\neq i}} a_{ij} \cdot x_j)
+	\end{array}
+\end{equation}
+
+Leading directly to the update function for the \textit{Jacobi} method:
+\begin{equation}\label{eq:jacobi_update}
+	\begin{array}{lrcl}
+		x_i^{(n+1)}  = a_{ii} - (b_i \displaystyle\sum_{\substack{j=1 \\ j\neq i}} a_{ij} \cdot x_j^{(n)})
+	\end{array}
+\end{equation}
+
+%\subsection{Conjugate Gradient}\label{cg}
+
+
 
 
 
