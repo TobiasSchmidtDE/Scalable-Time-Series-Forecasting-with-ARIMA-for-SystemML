@@ -675,9 +675,17 @@ Leading directly to the update function for the \textit{Jacobi} method:
 %\subsection{Conjugate Gradient}\label{cg}
 
 
+\section{SystemML}
+SystemML is Machine Learning Platform built for large scale analytics. It enables flexible and scalable machine learning while also accelerating exploratory algorithm development. 
 
+It accomplishes this by providing the \acl{DML} (\acs{DML}). It can either be written in the default R-Like ("DML") or a Python-Like ("PyDML") syntax.
 
+The goal of \acs{DML} is to automatically scale any algorithm by translating all the instruction within the script into a set of \textit{Spark} \acs{API} calls so it can be run on a cluster in multiple nodes if necessary. Beforehand SystemML also uses code optimization methods to remove dead code and common sub expressions.
 
+Each script is optimized based on data and cluster characteristics, which means that the script is not only optimized once, but a second time as soon as all free variables - or rather parameters the script can be run with - are known and therefore for example all the sizes of the matrices needed can be calculated. Using this information combined with the details about cluster are used to optimize the script further by for example calculating the number of nodes needed to run the script.
+
+DML and PyDML scripts can be run in different modes. Either in Spark, Hadoop or Standalone mode. Additionally it can also be access via Scala or Python to be used in a Spark Shell, Jupyter or Zepplin Notebook. This enables easy and fast algorithm development in a well established development environment for ML.
+ 
 
 
 

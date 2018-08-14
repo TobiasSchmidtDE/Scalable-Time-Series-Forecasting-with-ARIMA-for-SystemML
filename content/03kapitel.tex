@@ -1,12 +1,130 @@
 %!TEX root = ../dokumentation.tex
 \chapter{Methodology }
+To implement the algorithms for  the \acs{ARIMA} model for SystemML the R-Like \acs{DML} language has been chosen instead of the Python like PyDML. Simply because \acs{DML} had a significantly more detailed documentation at the time prior to the implementation.
+
+To be able to use the model for forecasting, there are two essential algorithms needed: One for forecasting with an the model and one for training the model. 
+To test whether the algorithms for training and forecasting are actually working as they are intended to, there needs to be a method to verifying there correctness. 
+
+For this the different outcomes produces by the algorithms are compared to the outcomes of the implementations of the built-in \acs{ARIMA} model that R provides. This is chosen to be used as a means of measurement based on the assumption that R's implementation is already correct itself, which is a reasonably good assumption, because of R's well establishment within the Machine Learning and Data Science community. Therefore the algorithms provided within the base framework of R are used broadly and hence well tested by Data Scientists.
+
+Finally the performance of the algorithms is also of interest. In particular when scaling the algorithm to be used for larger data sets or higher order models. 
+To identify bottlenecks of the algorithms the time and count of the calculation heavy instructions should be measured too.
 
 \section{Declarative Machine Learning Language}
+%https://systemml.apache.org/docs/0.12.0/dml-language-reference.html
+
+In SystemML \acs{DML} scripts can be run using \textit{spark-submit} by running the following command:
+
+\begin{lstlisting}[caption={Command running the "hello.dml" script},captionpos=b]
+	spark-submit SystemML.jar -f hello.dml
+\end{lstlisting}
+
+In general \acs{DML} is designed to be as close to the syntax and behavior of R as possible without
+
+Variables in \acs{DML} can have one of three different data types: Frames, matrix or scalar. Each of those data types can have one out of four value types:  Double, integer, string or boolean.
+The value types that the data types support are restricted in the following way:
+Frames and matrices are two dimensional with matrices only supporting double values and frames being able to hold any one of the value types in one structure. However, with all the columns restricted to a single value type. Scalars can be of any value type without further restrictions.
+
+In regards to operators for matrices and scalars, the same associativity and precedence order that R also has is followed.
+For binary operators of two matrices the dimensions need to match the operator's semantics. When applying a binary operator on a matrix and scalar the operation is performed cell-wise on the matrix and the scalar. The syntax for matrix multiplication is $A \% *\% B$ with A and B being variables holding matrices.
+
+A matrix can be initialized by either using the matrix constructor \lstinline{matrix()} providing the size and initialization value, by generating a random matrix with  \lstinline{rand()} or by reading it from a file with \lstinline{read()}.
+
+The built-in indexing functionalities of matrices allows for accessing, single cells, rows, columns or sub matrices. The syntax for this is:
+
+\begin{lstlisting}[caption={Matrix range indexing syntax},captionpos=b]
+[Matrix name][lower-row : upper-row],[lower-column : upper-column]
+\end{lstlisting}
+
+Providing only one value for the rows or columns is equal to setting both lower and upper to the same value, therefore specifying only or row or column. Leaving both lower and upper out completely will set the default values to select all rows or columns. 
+
+
+\begin{lstlisting}[caption={Example for matrix indexing},captionpos=b]
+X[1:2,3:4] # access the sub matrix all the cells form row 1 and 2 that are also in column 3 and 4
+X[1,4] # access cell in row 1, column 4 of matrix X
+X[i,j] # access cell in row i, column j of X.
+X[1,]  # access the 1st row of X 
+X[,2]  # access the 2nd column of X
+X[,]   # access all rows and columns of X
+\end{lstlisting}
+
+Additionally to the primitive operators there are also some predefined functions for manipulating and aggregating matrices:
+
+\begin{lstlisting}[caption={Example for matrix manipulation and aggregation},captionpos=b]
+# Constructing a 3 x 4 matrix filled with ones:
+A = matrix(1, rows = 3, cols = 4) 
+
+# Creating diagonal matrix -> B is 3x3 Identity  Matrix:
+B = diag(A[,1:3])					
+
+# Concatinating B to A column-wise -> Dimension of C: 3x7
+C = cbind(A, B)						
+
+# Transposing A -> Dimension of D: 4 x 3:
+D = t(A)							
+
+# Casting a matrix cell as scalar
+first_cell = as.scalar(A[1,1])		
+
+print(nrow(A)) # prints the number of rows of A: 3
+print(ncol(A)) # prints the number of columns of A: 4
+print(sum(A))  # prints the sum of all cells of A: 12
+\end{lstlisting}
+
+Of course, \acs{DML} also provides \acl{UDF} (\acs{UDF}). Those functions can store a list of statements containing any statement that is usually allowed. The only restriction is the definition of another \acs{UDF}. The syntax is as follows:
+
+\begin{lstlisting}[caption={\acl{UDF} syntax},captionpos=b]
+functionName = function([ <DataType>? <ValueType> <var>, ]* )
+    return ([ <DataType>? <ValueType> <var>,]*) {
+    # function body definition in DML
+    statement1
+    statement2
+    ...
+}
+\end{lstlisting}
+
 \section{Verifying Correctness}
+
+To verify the correctness of our training and prediction algorithms, the script that is used to invoke R's ARIMA needs to be configured to run in the same way that the \acs{DML} scripts do. 
+This excludes the parameters that are to be set freely when using ARIMA in its differnt forms like non seasonal and seasonal orders p, d, q, P, D, Q and s as well as the input time series. These parameters only need to be the same for each indivual test.
+Other features however, need to be constantly set to the same values. Given the input variables \textit{data}, \textit{nonseasonalparam}, \textit{seasonalparam} and \textit{seasonality}:
+
+\begin{lstlisting}[caption=ARIMA model trianing invocation in R,captionpos=b]
+arima_model = arima(data, order=nonseasonalparam,  seasonal=list(order=seasonalparam, period=seasonality), include.mean=FALSE, transform.pars=FALSE, method=c("CSS"), optim.method="BFGS")
+\end{lstlisting}
+
+%TODO: reference appendix with complete R script
+
+The variable \textit{arima\_model} then contains the coefficients that have been found to fit the model to the time series as well as residuals - errors in the prediction when using these coefficients.
+
+Comparing the residuals of R's \acs{ARIMA} to the residuals calculated by the DML script can be used to verify the correctness of the prediction script. And for the training script the coefficients have to be compared.
+
+To test the correctness of the calculation of the gradient of \acs{ARIMA} which is needed when using \acs{BFGS}, it can be compared to the results of the finite differencing method.
+
 \section{Benchmarking}
+ 
+To test the performance of the any \acs{DML} script, SystemML already offers two features for benchmarking. First of all, when running any script using \textit{spark-submit} it always measures and prints out the total execution time at the end of every run:
+\begin{lstlisting}[caption=SystemML default statistics,captionpos=b]
+SystemML Statistics:
+Total execution time:           0.119 sec.
+Number of executed Spark inst:  1.
+\end{lstlisting}
 
-
-
+Furthermore, when adding the additional \lstinline{-stats} parameter to the invocation command, a more detailed version of this statistics is printed out, even showing the execution times on instruction level:
+\begin{lstlisting}[caption=Excerpt from SystemML's detailed statistics output,captionpos=b]
+SystemML Statistics:
+Total elapsed time:             10.614 sec.
+Total compilation time:         7.514 sec.
+Total execution time:           3.100 sec.
+[...]
+Heavy hitter instructions:
+  #  Instruction      Time(s)  Count
+  1  eval               2.215      1
+  2  linesearch         1.680     13
+  3  arima_residuals    1.636    111
+  4  arima_css          1.596     97
+[...]
+\end{lstlisting}
 
 
 
